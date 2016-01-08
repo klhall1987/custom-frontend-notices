@@ -8,7 +8,32 @@ Author: Kenny Hall
 Author URI: http://kennyinthewild.com
 */
 
+
+/**
+ * Class Custom_Frontend_Notices
+ */
 class Custom_Frontend_Notices
 {
+    /**
+     * @var string
+     */
+    public static $url = '';
 
+    /**
+     * @var string
+     */
+    public static $dir = '';
+
+
+    public function __construct()
+    {
+        include( 'includes/cfn-post-type.php' );
+
+        self::$dir = plugin_dir_path( __FILE__ );
+
+        self::$url = plugin_dir_url( __FILE__ );
+
+    }
 }
+
+return new Custom_Frontend_Notices();
