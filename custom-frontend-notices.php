@@ -24,15 +24,17 @@ class Custom_Frontend_Notices
      */
     public static $dir = '';
 
-
+    /**
+     * Custom_Frontend_Notices constructor.
+     */
     public function __construct()
     {
-        include( 'includes/cfn-post-type.php' );
+        include( 'includes/admin/cfn-post-type.php' );
+        include( 'includes/cfn-settings.php' );
 
         self::$dir = plugin_dir_path( __FILE__ );
 
         self::$url = plugin_dir_url( __FILE__ );
-
     }
 }
 

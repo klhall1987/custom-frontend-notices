@@ -5,7 +5,7 @@ class CFN_Post_Type
 
     public function __construct()
     {
-        add_action('init', array( $this, 'cfn_custom_post_type'), 0);
+        add_action('init', array( $this, 'cfn_custom_post_type'), 10);
     }
 
     public function cfn_custom_post_type()
@@ -15,7 +15,7 @@ class CFN_Post_Type
             'name' => _x('CFN Post Types', 'Post Type General Name', 'text_domain'),
             'singular_name' => _x('CFN Post Type', 'Post Type Singular Name', 'text_domain'),
             'menu_name' => __('Custom Notices', 'text_domain'),
-            'name_admin_bar' => __('Post Type', 'text_domain'),
+            'name_admin_bar' => __('Custom Notices', 'text_domain'),
             'archives' => __('Item Archives', 'text_domain'),
             'parent_item_colon' => __('Parent Item:', 'text_domain'),
             'all_items' => __('All Items', 'text_domain'),
@@ -38,10 +38,11 @@ class CFN_Post_Type
             'filter_items_list' => __('Filter items list', 'text_domain'),
         );
         $args = array(
-            'label' => __('CFN Post Type', 'text_domain'),
+            'label' => __('Custom Frontend Notices', 'text_domain'),
             'description' => __('Custom frontend notices post type', 'text_domain'),
             'labels' => $labels,
             'supports' => array(),
+            'taxonomies' => array( 'post_tag' ),
             'hierarchical' => false,
             'public' => true,
             'show_ui' => true,
