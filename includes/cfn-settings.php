@@ -2,36 +2,35 @@
 
 class CNF_Settings
 {
-    public $posts_array;
-
     public $args = array();
 
     public function __construct()
     {
         $this->args = array(
-            'posts_per_page' => 1,
-            'offset' => 0,
-            'category' => 'Custom Notice',
-            'category_name' => 'Custom Notices',
-            'orderby' => 'date',
-            'order' => 'DESC',
-            'include' => '',
-            'exclude' => '',
-            'meta_key' => '',
-            'meta_value' => '',
-            'post_type' => 'cfn_post_type',
-            'post_mime_type' => '',
-            'post_parent' => '',
-            'author' => '',
-            'post_status' => 'publish',
-            'suppress_filters' => true
+            'posts_per_page'   => 5,
+            'post_type'        => 'cfn_post_type',
+            'tax_query' => array(
+                array(
+                'taxonomy' => 'custom_notice',
+                'field'    => 'slug',
+                'terms'    => 'foo',
+                ),
+            )
         );
-
-        $this->posts_array = get_posts( $this->args );
     }
 
+    public function getPosts()
+    {
+        $posts_array = get_posts( $this->args );
+
+        foreach( $posts_array as $posts ){
+            echo '<pre>';
+            var_dump( $posts );
+            echo '</pre>';
+        }
+    }
 }
 
-return new CNF_Settings();
+$p = new CNF_Settings();
 
-
+$p->getPosts();

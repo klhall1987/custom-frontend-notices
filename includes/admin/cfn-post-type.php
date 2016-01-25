@@ -5,7 +5,7 @@ class CFN_Post_Type
 
     public function __construct()
     {
-        add_action( 'init', array( $this, 'cfn_register_post_type' ), 10 );
+        add_action( 'init', array( $this, 'cfn_register_post_type' ), 0 );
 
         add_action( 'init', array( $this, 'cfn_register_taxonomy' ), 10 );
     }
@@ -44,7 +44,7 @@ class CFN_Post_Type
             'description' => __('Custom frontend notices post type', 'text_domain'),
             'labels' => $labels,
             'supports' => array(),
-            'taxonomies' => array( 'cfn_post_type' ),
+            'taxonomies' => array( 'custom_notice' ),
             'hierarchical' => false,
             'public' => true,
             'show_ui' => true,
@@ -58,6 +58,7 @@ class CFN_Post_Type
             'publicly_queryable' => true,
             'capability_type' => 'post',
         );
+
         register_post_type('cfn_post_type', $args);
 
     }
@@ -94,7 +95,7 @@ class CFN_Post_Type
             'show_tagcloud'              => true,
         );
 
-        register_taxonomy( 'Custom Notice', 'cfn_post_type', $args );
+        register_taxonomy( 'custom_notice', 'cfn_post_type', $args );
 
     }
 }
