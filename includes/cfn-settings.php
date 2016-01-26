@@ -7,15 +7,16 @@ class CNF_Settings
     public function __construct()
     {
         $this->args = array(
-            'posts_per_page'   => 5,
+            'showposts' => -1,
             'post_type'        => 'cfn_post_type',
             'tax_query' => array(
                 array(
                 'taxonomy' => 'custom_notice',
-                'field'    => 'slug',
+                'field'    => 'name',
                 'terms'    => 'foo',
                 ),
-            )
+            ),
+            'suppress_filters' => false
         );
     }
 

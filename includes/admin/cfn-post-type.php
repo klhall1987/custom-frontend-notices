@@ -7,7 +7,7 @@ class CFN_Post_Type
     {
         add_action( 'init', array( $this, 'cfn_register_post_type' ), 0 );
 
-        add_action( 'init', array( $this, 'cfn_register_taxonomy' ), 10 );
+        add_action( 'init', array( $this, 'cfn_register_taxonomy' ), 0 );
     }
 
     public function cfn_register_post_type()
@@ -91,12 +91,12 @@ class CFN_Post_Type
             'public'                     => true,
             'show_ui'                    => true,
             'show_admin_column'          => true,
+            'query_var'                  => true,
             'show_in_nav_menus'          => true,
             'show_tagcloud'              => true,
+
         );
-
-        register_taxonomy( 'custom_notice', 'cfn_post_type', $args );
-
+        register_taxonomy( 'custom_notice', array( 'cfn_post_type' ), $args );
     }
 }
 
