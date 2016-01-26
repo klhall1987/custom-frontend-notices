@@ -24,7 +24,6 @@ class CFN_Settings
             ),
             'suppress_filters' => false
         );
-
         add_action( 'init',  array( $this,  'getPosts' ), 10);
     }
 
