@@ -7,6 +7,9 @@ class CFN_Settings
      */
     public $args = array();
 
+    /**
+     * CFN_Settings constructor.
+     */
     public function __construct()
     {
         $this->args = array(
@@ -14,9 +17,9 @@ class CFN_Settings
             'post_type' => 'cfn_post_type',
             'tax_query' => array(
                 array(
-                'taxonomy' => 'notice_type',
-                'field'    => 'slug',
-                'terms'    => 'holiday',
+                    'taxonomy' => 'notice_type',
+                    'field'    => 'slug',
+                    'terms'    => 'holiday',
                 ),
             ),
             'suppress_filters' => false
