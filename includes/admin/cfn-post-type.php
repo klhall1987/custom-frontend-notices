@@ -14,15 +14,15 @@ class CFN_Post_Type
     {
 
         $labels = array(
-            'name' => _x('CFN Post Types', 'Post Type General Name', 'text_domain'),
-            'singular_name' => _x('CFN Post Type', 'Post Type Singular Name', 'text_domain'),
+            'name' => _x('Notices', 'Post Type General Name', 'text_domain'),
+            'singular_name' => _x('Custom Notice Message', 'Post Type Singular Name', 'text_domain'),
             'menu_name' => __('Custom Notices', 'text_domain'),
             'name_admin_bar' => __('Custom Notices', 'text_domain'),
             'archives' => __('Item Archives', 'text_domain'),
             'parent_item_colon' => __('Parent Item:', 'text_domain'),
             'all_items' => __('All Items', 'text_domain'),
-            'add_new_item' => __('Add New Item', 'text_domain'),
-            'add_new' => __('Add New', 'text_domain'),
+            'add_new_item' => __('Add New Notice', 'text_domain'),
+            'add_new' => __('New Notice', 'text_domain'),
             'new_item' => __('New Item', 'text_domain'),
             'edit_item' => __('Edit Item', 'text_domain'),
             'update_item' => __('Update Item', 'text_domain'),
@@ -44,7 +44,7 @@ class CFN_Post_Type
             'description' => __('Custom frontend notices post type', 'text_domain'),
             'labels' => $labels,
             'supports' => array(),
-            'taxonomies' => array( 'custom_notice' ),
+            'taxonomies' => array( 'notice_type' ),
             'hierarchical' => false,
             'public' => true,
             'show_ui' => true,
@@ -66,9 +66,9 @@ class CFN_Post_Type
     public function cfn_register_taxonomy()
     {
         $labels = array(
-            'name'                       => _x( 'Custom Notices', 'Custom Notices', 'text_domain' ),
-            'singular_name'              => _x( 'Custom Notice', 'Custom Notice', 'text_domain' ),
-            'menu_name'                  => __( 'Custom Notices', 'text_domain' ),
+            'name'                       => _x( 'Notice Types', 'Custom Notices', 'text_domain' ),
+            'singular_name'              => _x( 'Notice Type', 'Custom Notice', 'text_domain' ),
+            'menu_name'                  => __( 'Notice Types', 'text_domain' ),
             'all_items'                  => __( 'All Custom Notices', 'text_domain' ),
             'parent_item'                => __( 'Parent Custom Notices', 'text_domain' ),
             'parent_item_colon'          => __( 'Parent Custom Notices:', 'text_domain' ),
@@ -96,7 +96,7 @@ class CFN_Post_Type
             'show_tagcloud'              => true,
 
         );
-        register_taxonomy( 'custom_notice', array( 'cfn_post_type' ), $args );
+        register_taxonomy( 'notice_type', array( 'cfn_post_type' ), $args );
     }
 }
 

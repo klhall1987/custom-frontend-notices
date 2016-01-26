@@ -1,23 +1,28 @@
 <?php if ( ! defined( 'ABSPATH' ) ) exit;
 
-class CNF_Settings
+class CFN_Settings
 {
+    /**
+     * @var array
+     */
     public $args = array();
 
     public function __construct()
     {
         $this->args = array(
             'showposts' => -1,
-            'post_type'        => 'cfn_post_type',
+            'post_type' => 'cfn_post_type',
             'tax_query' => array(
                 array(
-                'taxonomy' => 'custom_notice',
-                'field'    => 'name',
-                'terms'    => 'foo',
+                'taxonomy' => 'notice_type',
+                'field'    => 'slug',
+                'terms'    => 'holiday',
                 ),
             ),
             'suppress_filters' => false
         );
+
+        add_action( 'init',  array( $this,  'getPosts' ), 10);
     }
 
     public function getPosts()
@@ -25,13 +30,12 @@ class CNF_Settings
         $posts_array = get_posts( $this->args );
 
         foreach( $posts_array as $posts ){
-            echo '<pre>';
-            var_dump( $posts );
-            echo '</pre>';
+
+            echo $posts->post_content;
         }
     }
 }
 
-$p = new CNF_Settings();
+return new CFN_Settings();
 
-$p->getPosts();
+
