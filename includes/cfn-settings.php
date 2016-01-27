@@ -2,31 +2,39 @@
 
 class CFN_Settings
 {
-    public $cfn_terms;
+    /**
+     * @var array
+     *
+     * An array of the taxonomies terms.
+     */
+    public $cfn_terms = array();
+
+    /**
+     * @var
+     */
+    public $content = array();
 
     /**
      * CFN_Settings constructor.
      */
     public function __construct()
     {
-        add_filter( 'init',  array( $this,  'getTerms' ), 10);
-        add_filter( 'init',  array( $this,  'getPostContent' ), 10);
-
-
+        add_filter( 'init',  array( $this,  'setTerms' ), 9001);
+        add_filter( 'init',  array( $this,  'getPostContent' ), 9001);
     }
 
-    public function getTerms()
+    public function setTerms()
     {
         $posts_array = get_posts( array( 'post_type' => 'cfn_post_type' ) );
 
         foreach( $posts_array as $posts ){
+
             $post_ID = $posts->ID;
 
-            $this->cfn_terms = wp_get_post_terms( $post_ID, 'notice_type', array( 'fields' => 'names' ) );
+            $cfn_terms = wp_get_post_terms( $post_ID, 'notice_type', array( 'fields' => 'names' ) );
+
+            $this->cfn_terms = array_merge( $this->cfn_terms, $cfn_terms );
         }
-
-        return $this->cfn_terms;
-
     }
 
     public function getPostContent()
@@ -43,14 +51,19 @@ class CFN_Settings
             ),
         );
 
-        $posts_array = get_posts( $args );
+        $post_array = get_posts( $args );
 
-        foreach( $posts_array as $posts ) {
-            echo '<pre>';
-            var_dump( $posts->post_content );
-            echo '</pre>';
+        foreach( $post_array as $post ){
+
+            $post_content = $post->post_content;
+
+            var_dump( $post_content );
+
         }
+
+
     }
 }
 
 return new CFN_Settings();
+
