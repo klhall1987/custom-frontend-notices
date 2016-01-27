@@ -31,6 +31,7 @@ class Custom_Frontend_Notices
     {
         include( 'includes/admin/cfn-post-type.php' );
         include( 'includes/cfn-settings.php' );
+        include( 'includes/cfn-shortcode.php' );
 
         self::$dir = plugin_dir_path( __FILE__ );
 
