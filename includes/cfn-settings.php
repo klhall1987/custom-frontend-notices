@@ -55,13 +55,10 @@ class CFN_Settings
 
         foreach( $post_array as $post ){
 
-            $post_content = $post->post_content;
+            $post_content = (array) $post->post_content;
 
-            var_dump( $post_content );
-
+            $this->content = array_merge( $this->content, $post_content );
         }
-
-
     }
 }
 
