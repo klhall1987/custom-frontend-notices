@@ -43,7 +43,7 @@ class CFN_Settings
         }
     }
 
-    public function createArgsArray()
+    public function createArgs()
     {
         $tax_query = array(
             'taxonomy' => 'notice_type',
