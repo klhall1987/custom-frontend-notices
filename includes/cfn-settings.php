@@ -4,6 +4,11 @@ class CFN_Settings
 {
     /**
      * @var array
+     */
+    public $args = array();
+
+    /**
+     * @var array
      *
      * An array of the taxonomies terms.
      */
@@ -19,8 +24,9 @@ class CFN_Settings
      */
     public function __construct()
     {
-        add_filter( 'init',  array( $this,  'setTerms' ), 9001);
-        add_filter( 'init',  array( $this,  'getPostContent' ), 9001);
+        add_action( 'init',  array( $this,  'setTerms' ), 9001);
+        add_action( 'init', array( $this, 'createArgsArray' ), 9001 );
+        add_action( 'wp_footer', array( $this, 'output' ), 9001);
     }
 
     public function setTerms()
@@ -33,13 +39,14 @@ class CFN_Settings
 
             $cfn_terms = wp_get_post_terms( $post_ID, 'notice_type', array( 'fields' => 'names' ) );
 
-            $this->cfn_terms = array_merge( $this->cfn_terms, $cfn_terms );
+            $this->cfn_terms = array_merge( (array)$this->cfn_terms, (array)$cfn_terms );
         }
     }
 
-    public function getPostContent()
+    public function createArgsArray()
     {
-        $args = array(
+
+        $this->args = array(
             'showposts' => -1,
             'post_type' => 'cfn_post_type',
             'tax_query' => array(
@@ -51,13 +58,24 @@ class CFN_Settings
             ),
         );
 
-        $post_array = get_posts( $args );
+        return $this->args;
+    }
+
+    public function output()
+    {
+        $content = array();
+
+        $post_array = get_posts( $this->args );
 
         foreach( $post_array as $post ){
 
             $post_content = (array) $post->post_content;
 
-            $this->content = array_merge( $this->content, $post_content );
+            $this->content = array_merge( $content, $post_content );
+
+            $strings = implode( '' , $this->content );
+
+            echo $strings . '<br>';
         }
     }
 }
