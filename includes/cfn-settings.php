@@ -63,8 +63,8 @@ class CFN_Settings
 
     public function output()
     {
+        $cfn_stylesheet = Custom_Frontend_Notices::$url . 'css/cfn-stylesheet.css';
 
-        
         $content = array();
 
         $posts = get_posts( $this->args );
