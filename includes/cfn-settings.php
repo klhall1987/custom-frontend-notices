@@ -24,7 +24,7 @@ class CFN_Settings
      */
     public function __construct()
     {
-        add_action( 'init',  array( $this,  'setTerms' ), 9001);
+        add_action( 'init', array( $this,  'setTerms' ), 9001);
         add_action( 'init', array( $this, 'createArgsArray' ), 9001 );
         add_action( 'wp_footer', array( $this, 'output' ), 9001);
     }
@@ -47,8 +47,8 @@ class CFN_Settings
     {
         $tax_query = array(
             'taxonomy' => 'notice_type',
-            'field' => 'slug',
-            'terms' => $this->cfn_terms,
+            'field'    => 'slug',
+            'terms'    => $this->cfn_terms,
         );
 
         $this->args = array(
