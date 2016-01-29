@@ -8,6 +8,8 @@ class CFN_Post_Type
         add_action( 'init', array( $this, 'cfn_register_post_type' ), 0 );
 
         add_action( 'init', array( $this, 'cfn_register_taxonomy' ), 0 );
+
+        add_action( 'init', array( $this, 'cfn_register_terms' ), 10 );
     }
 
     public function cfn_register_post_type()
@@ -97,6 +99,21 @@ class CFN_Post_Type
 
         );
         register_taxonomy( 'notice_type', array( 'cfn_post_type' ), $args );
+    }
+
+    public function cfn_register_terms()
+    {
+        wp_insert_term(
+            'Site',
+            'notice_type',
+            array( 'description' => 'Use this term to display notices across your entire site.')
+        );
+
+        wp_insert_term(
+            'Holiday',
+            'notice_type',
+            array( 'description' => 'This is an example term. It can be used to set Holiday notices.')
+        );
     }
 }
 
