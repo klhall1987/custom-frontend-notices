@@ -45,19 +45,17 @@ class CFN_Settings
 
     public function createArgsArray()
     {
+        $tax_query = array(
+            'taxonomy' => 'notice_type',
+            'field' => 'slug',
+            'terms' => $this->cfn_terms,
+        );
 
         $this->args = array(
             'showposts' => -1,
             'post_type' => 'cfn_post_type',
-            'tax_query' => array(
-                array(
-                    'taxonomy' => 'notice_type',
-                    'field' => 'slug',
-                    'terms' => $this->cfn_terms,
-                ),
-            ),
+            'tax_query' => array( $tax_query ),
         );
-
         return $this->args;
     }
 
@@ -65,9 +63,9 @@ class CFN_Settings
     {
         $content = array();
 
-        $post_array = get_posts( $this->args );
+        $posts = get_posts( $this->args );
 
-        foreach( $post_array as $post ){
+        foreach( $posts as $post ){
 
             $post_content = (array) $post->post_content;
 
@@ -75,7 +73,9 @@ class CFN_Settings
 
             $strings = implode( '' , $this->content );
 
-            echo $strings . '<br>';
+            if( has_term( 'Site', 'notice_type', $post ) ) {
+                echo $strings . '<br>';
+            }
         }
     }
 }
