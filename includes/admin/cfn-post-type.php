@@ -108,12 +108,6 @@ class CFN_Post_Type
             'notice_type',
             array( 'description' => 'Use this term to display notices across your entire site.')
         );
-
-        wp_insert_term(
-            'Holiday',
-            'notice_type',
-            array( 'description' => 'This is an example term. It can be used to set Holiday notices.')
-        );
     }
 }
 

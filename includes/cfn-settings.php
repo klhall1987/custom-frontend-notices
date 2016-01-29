@@ -19,13 +19,15 @@ class CFN_Settings
      */
     public $content = array();
 
+    public $strContent = '';
+
     /**
      * CFN_Settings constructor.
      */
     public function __construct()
     {
         add_action( 'init', array( $this,  'setTerms' ), 9001);
-        add_action( 'init', array( $this, 'createArgsArray' ), 9001 );
+        add_action( 'init', array( $this, 'createArgs' ), 9001 );
         add_action( 'wp_footer', array( $this, 'output' ), 9001);
     }
 
@@ -61,6 +63,8 @@ class CFN_Settings
 
     public function output()
     {
+
+        
         $content = array();
 
         $posts = get_posts( $this->args );
@@ -71,10 +75,12 @@ class CFN_Settings
 
             $this->content = array_merge( $content, $post_content );
 
-            $strings = implode( '' , $this->content );
+            $this->strContent = implode( '' , $this->content );
 
             if( has_term( 'Site', 'notice_type', $post ) ) {
-                echo $strings . '<br>';
+
+                include( Custom_Frontend_Notices::$dir . 'includes/cfn-display.html.php' );
+
             }
         }
     }
