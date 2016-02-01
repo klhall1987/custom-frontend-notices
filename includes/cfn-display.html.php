@@ -1,8 +1,8 @@
 <html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="<?php echo $cfn_stylesheet; ?>">
-    </head>
-    <body id="cfn-body">
-        <p id="cfn-content"><?php echo $this->strContent; ?></p>
-    </body>
+    <link rel="stylesheet" type="text/css" href="<?php echo $cfn_stylesheet; ?>">
+    <div id="cfn-body">
+        <?php foreach( $this->content as $notice ) : ?>
+            <p id="cfn-content"><?php echo $notice; ?></p>
+        <?php endforeach ?>
+    </div>
 </html>

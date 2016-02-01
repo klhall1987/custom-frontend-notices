@@ -19,8 +19,6 @@ class CFN_Settings
      */
     public $content = array();
 
-    public $strContent = '';
-
     /**
      * CFN_Settings constructor.
      */
@@ -73,14 +71,11 @@ class CFN_Settings
 
             $post_content = (array) $post->post_content;
 
-            $this->content = array_merge( $content, $post_content );
-
-            $this->strContent = implode( '' , $this->content );
+            $this->content = array_merge( $this->content, $post_content );
 
             if( has_term( 'Site', 'notice_type', $post ) ) {
 
                 include( Custom_Frontend_Notices::$dir . 'includes/cfn-display.html.php' );
-
             }
         }
     }
