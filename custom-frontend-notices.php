@@ -3,7 +3,7 @@
 /*
 Plugin Name: Custom Frontend Notices
 Description: Allows users to add and manage custom notices for the frontend of their sites.
-Version: 0.0.1
+Version: 0.0.6
 Author: Kenny Hall
 Author URI: http://kennyinthewild.com
 */
