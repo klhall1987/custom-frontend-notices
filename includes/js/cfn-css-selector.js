@@ -1,5 +1,9 @@
 jQuery(document).ready(function ($){
+    $("#cfn-body p").css("margin", "0");
 
-    $(".site-main").css("padding-bottom", "100px");
+    var height = $("#cfn-body").outerHeight();
+
+    $(".site-footer").css("padding-bottom", height + "px");
+    $(".widget-area").css("padding-bottom", height + "px");
 
 });

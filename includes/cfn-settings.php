@@ -24,10 +24,10 @@ class CFN_Settings
      */
     public function __construct()
     {
-
         add_action( 'init', array( $this,  'setTerms' ), 9001 );
         add_action( 'init', array( $this, 'createArgs' ), 9001 );
-        add_action( 'wp_footer', array( $this, 'output' ), 9001);
+        add_action( 'init', array( $this, 'createPostVar' ), 9001 );
+        add_action( 'wp_footer', array( $this, 'output' ), 9001) ;
     }
 
 
@@ -62,25 +62,26 @@ class CFN_Settings
         return $this->args;
     }
 
+    public function createPostVar()
+    {
+        $posts = get_posts($this->args);
+
+        foreach ($posts as $post) {
+
+            $post_content = (array)$post->post_content;
+
+            if( has_term( 'Site', 'notice_type', $post) ){
+                $this->content = array_merge( (array)$this->content, (array)$post_content);
+            }
+        }
+    }
+
     public function output()
     {
         $cfn_stylesheet = Custom_Frontend_Notices::$url . 'css/cfn-stylesheet.css';
 
-        $content = array();
+        include( Custom_Frontend_Notices::$dir . 'includes/cfn-display.html.php');
 
-        $posts = get_posts( $this->args );
-
-        foreach( $posts as $post ){
-
-            $post_content = (array) $post->post_content;
-
-            $this->content = array_merge( $this->content, $post_content );
-
-            if( has_term( 'Site', 'notice_type', $post ) ) {
-
-                include( Custom_Frontend_Notices::$dir . 'includes/cfn-display.html.php' );
-            }
-        }
     }
 }
 

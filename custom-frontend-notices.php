@@ -46,7 +46,7 @@ class Custom_Frontend_Notices
 
         $deps = array( 'jquery' );
 
-        wp_register_script( $handle, $src, $deps );
+        wp_register_script( $handle, $src, $deps, false, true );
 
         wp_enqueue_script( 'cfn_script' );
     }
