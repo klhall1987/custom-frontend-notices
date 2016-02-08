@@ -24,10 +24,13 @@ class CFN_Settings
      */
     public function __construct()
     {
-        add_action( 'init', array( $this,  'setTerms' ), 9001);
+
+        add_action( 'init', array( $this,  'setTerms' ), 9001 );
         add_action( 'init', array( $this, 'createArgs' ), 9001 );
         add_action( 'wp_footer', array( $this, 'output' ), 9001);
     }
+
+
 
     public function setTerms()
     {
