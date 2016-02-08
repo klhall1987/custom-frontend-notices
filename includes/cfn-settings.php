@@ -31,7 +31,6 @@ class CFN_Settings
     }
 
 
-
     public function setTerms()
     {
         $posts_array = get_posts( array( 'post_type' => 'cfn_post_type' ) );
@@ -62,6 +61,9 @@ class CFN_Settings
         return $this->args;
     }
 
+    /*
+     * Refactor the name of method soon.
+     */
     public function createPostVar()
     {
         $posts = get_posts($this->args);
