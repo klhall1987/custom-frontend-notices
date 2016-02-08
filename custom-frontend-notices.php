@@ -30,7 +30,7 @@ class Custom_Frontend_Notices
     public function __construct()
     {
         include( 'includes/admin/cfn-post-type.php' );
-        include( 'includes/cfn-settings.php' );
+        include( 'includes/cfn-processing.php');
 
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueueScripts' ), 9001 );
 
@@ -40,15 +40,15 @@ class Custom_Frontend_Notices
 
     public function enqueueScripts()
     {
-        $handle = 'cfn_script';
+        $handle = 'cfn_settings_script';
 
-        $src = Custom_Frontend_Notices::$url . 'includes/js/cfn-css-selector.js';
+        $src = Custom_Frontend_Notices::$url . 'includes/js/cfn-settings-script.js';
 
         $deps = array( 'jquery' );
 
         wp_register_script( $handle, $src, $deps, false, true );
 
-        wp_enqueue_script( 'cfn_script' );
+        wp_enqueue_script( 'cfn_settings_script' );
     }
 }
 

@@ -1,5 +1,7 @@
 jQuery(document).ready(function ($){
+
     $("#cfn-body p").css("margin", "0");
+
     var height = $("#cfn-body").outerHeight();
 
     /*

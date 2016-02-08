@@ -1,6 +1,6 @@
 <?php if ( ! defined( 'ABSPATH' ) ) exit;
 
-class CFN_Settings
+class CFN_Processing
 {
     /**
      * @var array
@@ -82,10 +82,10 @@ class CFN_Settings
     {
         $cfn_stylesheet = Custom_Frontend_Notices::$url . 'css/cfn-stylesheet.css';
 
-        include( Custom_Frontend_Notices::$dir . 'includes/cfn-display.html.php');
+        include( Custom_Frontend_Notices::$dir . 'includes/display/cfn-display.html.php');
 
     }
 }
 
-return new CFN_Settings();
+return new CFN_Processing();
 
