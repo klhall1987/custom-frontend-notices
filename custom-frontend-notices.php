@@ -30,6 +30,7 @@ class Custom_Frontend_Notices
     public function __construct()
     {
         include( 'includes/admin/cfn-post-type.php' );
+        include('includes/admin/cfn-settings-submenu.php');
         include( 'includes/cfn-processing.php');
 
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueueScripts' ), 9001 );
