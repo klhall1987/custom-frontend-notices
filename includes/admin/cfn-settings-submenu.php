@@ -21,6 +21,8 @@ class CFN_Settings
 
     public function output()
     {
+        $cfn_stylesheet = Custom_Frontend_Notices::$url . 'css/cfn-stylesheet.css';
+
         include( Custom_Frontend_Notices::$dir . 'includes/display/cfn_admin_settings.html.php' );
     }
 }

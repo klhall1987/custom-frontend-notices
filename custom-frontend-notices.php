@@ -30,13 +30,12 @@ class Custom_Frontend_Notices
     public function __construct()
     {
         include( 'includes/admin/cfn-post-type.php' );
-        include('includes/admin/cfn-settings-submenu.php');
+        include( 'includes/admin/cfn-settings-submenu.php' );
         include( 'includes/cfn-processing.php');
-
-        add_action( 'wp_enqueue_scripts', array( $this, 'enqueueScripts' ), 9001 );
-
         self::$dir = plugin_dir_path( __FILE__ );
         self::$url = plugin_dir_url( __FILE__ );
+
+        add_action( 'wp_enqueue_scripts', array( $this, 'enqueueScripts' ), 9001 );
     }
 
     public function enqueueScripts()
